@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return  Student::all();
+        return  Task::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        return Student::create($request->all());
+        return Task::create($request->all());
     }
 
     /**
@@ -46,7 +46,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        return Student::find($id);
+        return Task::find($id);
     }
 
     /**
@@ -69,9 +69,9 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student = Student::find($id);
-        $student->update($request->all());
-        return $student;
+        $task = Task::find($id);
+        $task->update($request->all());
+        return $task;
     }
 
     /**
@@ -82,6 +82,6 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        return Student::destroy($id);
+        return Task::destroy($id);
     }
 }
