@@ -35,7 +35,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return Task::create($request->all());
+        $task= new Task();
+        $task->name=$request->name;
+
+        $task->save();
     }
 
     /**
@@ -46,7 +49,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        return Task::find($id);
+        $task =Task::find($id);
+        return  $task;
     }
 
     /**
@@ -82,6 +86,6 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        return Task::destroy($id);
+        $task= Task::find($id)->delete();
     }
 }
