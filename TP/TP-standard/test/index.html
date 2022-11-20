@@ -4,9 +4,9 @@
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
 
-
+<div id="app"></div>
     <div id="root"></div>
-    <div id="app"></div>
+  
 
 
 <!-- <script src="./components/table.js" type="text/babel"></script> -->
@@ -18,11 +18,27 @@
     let data= axios.get(`${url}`)
       .then(
         function(response){
-            function Display() {
+        function Display() {
         let task=response.data
         let components = []
         for (let i in task) {components.push(
-      <li key={i}> Tâche : {task[i]['name']}</li>
+          <div className="container">
+            <div className="row col-md-12 col-md-offset-2 custyle">
+        <table className="table table-striped custab">
+           
+            <tbody>
+              
+              <tr >
+                <td key={i}> {task[i]['name']}
+                  </td>
+               
+                </tr>
+              </tbody> 
+          
+            </table>
+            </div>
+          </div>
+     
       )} 
       return components;
         }
@@ -43,6 +59,7 @@
         handleChange(event) {
             this.setState({value: event.target.value});
         }
+        
         addTask(event){
             axios.post('http://127.0.0.1:8000/api/task/store', {
             name: this.state.value,
@@ -54,6 +71,7 @@
 
             event.preventDefault();
          }
+         
          render() {
     return (
       
@@ -64,7 +82,8 @@
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
 
-        <input type="submit"  value="Submit" />
+        <button type="submit" value="submit">submit</button>
+
       </form>
     
     );
