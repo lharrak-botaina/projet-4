@@ -32,6 +32,17 @@ class Table extends React.Component{
                     </tr>
                 </thead>
                 <tbody>
+                    {this.state.data.map((value)=>
+                    <tr key={value.id}>
+                        <td>{value.name}</td>
+                       <td>
+                        <button>modifier</button>
+                        <button>supprimer</button>
+                       </td>
+
+                    </tr>)
+
+                    }
 
                 </tbody>
 
