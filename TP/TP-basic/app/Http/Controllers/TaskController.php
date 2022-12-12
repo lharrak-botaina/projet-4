@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return  Task::all();
+        // return  Task::all();
+        $Tasks= Task::select('*',DB::raw("TIMESTAMPDIFF(HOUR,created_at,updated_at) AS Period"))->get();
+        return $Tasks;
     }
 
     /**
