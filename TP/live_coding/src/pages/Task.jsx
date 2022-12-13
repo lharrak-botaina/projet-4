@@ -10,32 +10,50 @@ class Task extends React.Component{
         
     }
 
-    async componentDidMount(){
-        const res = await axios.get('http://127.0.0.1:8000/api/task')
+    componentDidMount(){
+        axios.get('http://127.0.0.1:8000/api/task')
+      .then(res=>{
         this.setState({
-            Task:res.data
-           
-        })
+                    Task:res.data
+                
+                })
+      })
+       
         // console.log(res.data);
     }
     deleteTask = (id)=>{
-        const res = axios.delete(`http://127.0.0.1:8000/api/task/delete/${id}`)
+         axios.delete(`http://127.0.0.1:8000/api/task/delete/${id}`)
+        .then(res=>{
+            axios.get('http://127.0.0.1:8000/api/task')
+            .then(res=>{
+                    this.setState({
+                                Task:res.data
+                            
+                            })
+            })
+        })
         // window.location.reload();
     }
 
     addTask =(e)=> {
     e.preventDefault();
         console.log('ok')
-       const res = axios.post('http://127.0.0.1:8000/api/task/store',this.state)
+        axios.post('http://127.0.0.1:8000/api/task/store',this.state)
        .then(res=>{
-        window.location.reload();
+        axios.get('http://127.0.0.1:8000/api/task')
+        .then(res=>{
+                this.setState({
+                            Task:res.data
+                        
+                        })
+        })
        }) 
       
 
     }
    
     handeleInput=(e)=>{
-        console.log(this)
+        // console.log(this.state)
         this.setState({
             name:e.target.value
             
@@ -45,19 +63,34 @@ class Task extends React.Component{
 
     editTask=(id)=>{
 
-        const res = axios.get(`http://127.0.0.1:8000/api/task/${id}`)
+       axios.get(`http://127.0.0.1:8000/api/task/${id}`)
         .then(res=>{
             this.setState({
                 name:res.data.name,
                 id:res.data.id
             })
-            // alert('good')
+           
+           
         })
-    }
-    updateTask=()=>{
-        let id_task = this.state.id
-        const res = axios.put(`http://127.0.0.1:8000/api/task/update/${id_task}`,this.state)
         
+    }
+    updateTask=(e)=>{
+        e.preventDefault()
+        let id_task = this.state.id
+       axios.put(`http://127.0.0.1:8000/api/task/update/${id_task}`,this.state)
+        .then(res=>{
+           
+            axios.get('http://127.0.0.1:8000/api/task')
+            .then(res=>{
+                    this.setState({
+                                Task:res.data
+                            
+                            })
+            })
+
+        })
+           
+            
 
     }
 
@@ -65,9 +98,9 @@ class Task extends React.Component{
     render (){
         return(
             <div>
-                <form action="" onSubmit={this.addTask}>
+                <form action="" >
                     task : <input name='name' value={this.state.name} type="text" onChange={this.handeleInput}  />
-                    <button type='submit'>add</button>
+                    <button onClick={this.addTask} type='submit'>add</button>
                     <button type='submit' onClick={this.updateTask}>update</button>
                 </form>
                
