@@ -15,16 +15,15 @@ return new class extends Migration
     {
         Schema::create('groupes', function (Blueprint $table) {
             $table->id();
-            $table->string('Nom_groupe')->nullable();
-            $table->unsignedInteger('id_Annee_formation')->nullable();
-            $table->foreign("id_Annee_formation")
-                ->references("id")
-                ->on('Annee_formation')
+            $table->string('Nom_groupe');
+            $table->bigInteger('Annee_formation_id')->unsigned();
+            $table->foreign("Annee_formation_id")
+                ->references('id')->on('annee_formation')
                 ->onDelete('cascade');
-            $table->unsignedInteger("Formateur_id")->nullable();
+            $table->bigInteger("Formateur_id")->unsigned();
             $table->foreign("Formateur_id")
                 ->references("id")
-                ->on("Formateur")
+                ->on("formateur")
                 ->onDelete('cascade');
             $table->string('Logo');
             $table->timestamps();

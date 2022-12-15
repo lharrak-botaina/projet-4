@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('Nom');
             $table->string('Prenom');
             $table->date('Duree');
-            $table->unsignedInteger('Preparation_brief_id');
+            $table->bigInteger('Preparation_brief_id')->unsigned();
             $table->foreign('Preparation_brief_id')
                 ->references('id')
                 ->on('preparation_brief')

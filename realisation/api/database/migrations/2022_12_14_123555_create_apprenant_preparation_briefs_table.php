@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('apprenant_preparation_briefs', function (Blueprint $table) {
             $table->id();
-            $table->date('Date_affectation');
-            $table->unsignedInteger("Preparation_brief_id");
-            $table->unsignedInteger("Apprenant_id");
+                        $table->date('Date_affectation');
+            $table->bigInteger("Preparation_brief_id")->unsigned();
+            $table->bigInteger("Apprenant_id")->unsigned();
 
             $table->foreign("Preparation_brief_id")
                 ->references("id")
@@ -25,7 +25,7 @@ return new class extends Migration
                 ->onDelete("cascade");
             $table->foreign("Apprenant_id")
                 ->references("id")
-                ->on("apprenant")
+                ->on("apprenants")
                 ->onDelete("cascade");
             
            

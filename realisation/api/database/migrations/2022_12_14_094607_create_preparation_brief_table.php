@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('Nom');
             $table->string('Description');
             $table->decimal('Duree');
-            $table->unsignedInteger('Formateur_id');
+            $table->bigInteger('Formateur_id')->unsigned();
             $table->foreign('Formateur_id')->references('id')->on('formateur')->onDelete('cascade');
             $table->timestamps();
         });

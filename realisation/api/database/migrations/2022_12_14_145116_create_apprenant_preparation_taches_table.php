@@ -15,22 +15,22 @@ return new class extends Migration
     {
         Schema::create('apprenant_preparation_taches', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger("Preparation_tache_id");
+            $table->bigInteger("Preparation_tache_id")->unsigned();
             $table->foreign("Preparation_tache_id")
                 ->references('id')
-                ->on('preparation_tache')
+                ->on('preparation_taches')
                 ->onDelete("cascade");
 
-            $table->unsignedInteger("Apprenant_id");
+            $table->bigInteger("Apprenant_id")->unsigned();
             $table->foreign("Apprenant_id")
                 ->references('id')
-                ->on('apprenant')
+                ->on('apprenants')
                 ->onDelete("cascade");
 
-            $table->unsignedInteger("Apprenant_preparationBrief_id");
-            $table->foreign("Apprenant_preparationBrief_id")
+            $table->bigInteger("Apprenant_p_Brief_id")->unsigned();
+            $table->foreign("Apprenant_p_Brief_id")
                 ->references('id')
-                ->on('apprenant_preparation_brief')
+                ->on('apprenant_preparation_briefs')
                 ->onDelete("cascade");
             $table->string('Etat')->default('en pouse');
             $table->timestamp("date_debut")->nullable();

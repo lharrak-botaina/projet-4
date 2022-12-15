@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('formateur', function (Blueprint $table) {
-            $table->increments("id");
+            $table->id();
             $table->string("Nom _formateur")->nullable();
             $table->string("Prenom_formateur")->nullable();
             $table->string("Email_formateur")->nullable();

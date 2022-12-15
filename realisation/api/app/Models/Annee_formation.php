@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Preparation_brief extends Model
+class Annee_formation extends Model
 {
     use HasFactory;
-    protected $table=' preparation_brief';
+    protected $table='annee_formation';
     protected $fillable=[
-        'id',
-        'Nom',
-        'Description',
-        'Duree',
-        'Formateur_id'
+        'Annee_scolaire'
     ];
-  
+
 }
