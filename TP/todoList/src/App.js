@@ -67,11 +67,11 @@ class App extends React.Component {
 
 
   markDone(i) {
-    let tasksArray = this.state.tasksArray
-    let task = this.state.tasksArray[i]
-    tasksArray.splice(i, 1)
-    task.done = !task.done 
-    task.done ? tasksArray.push(task) : tasksArray.unshift(task)
+    // let tasksArray = this.state.tasksArray
+    // let task = this.state.tasksArray[i]
+    // tasksArray.splice(i, 1)
+    // task.done = !task.done 
+    // task.done ? tasksArray.push(task) : tasksArray.unshift(task)
 
 
     this.setState({
@@ -81,28 +81,28 @@ class App extends React.Component {
     
   }
 
-  onChangeInput(e) {
-  }
+  // onChangeInput(e) {
+  // }
 
   render() {
-    let tasksArray = this.state.tasksArray.map((task,i) => {
-      return (
-        <Task 
-          key={i}
-          value={task.value}
-        />
-      )
-    })
+    // let tasksArray = this.state.tasksArray.map((task,i) => {
+    //   return (
+    //     <Task 
+    //       key={i}
+    //       value={task.value}
+    //     />
+    //   )
+    // })
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3">
-            <h1>Tâches à faire : </h1>
+            <h1>Tasks to do : </h1>
             <form action="" onSubmit={this.addTask}>
-                    task : <input name='name' value={this.state.name} type="text" 
+                    Task : <input name='name' value={this.state.name} type="text" 
                     onInput={(e) => this.setState({taskName: e.target.value})}  />
-                    <button type='submit'>add</button>
+                    <button type='submit'>Add</button>
                 </form>
 
 <h3>Tasks : </h3>
@@ -112,7 +112,7 @@ class App extends React.Component {
 <tr key={value.id}>
 <td>{value.name}</td>
 <td>
-<button onClick={this.deleteTask.bind(this,value.id)} type='submit'>Done ✔️</button>
+<button onClick={this.deleteTask.bind(this,value.id)} type='submit'>Done </button>
 </td>
 </tr>
 )}
